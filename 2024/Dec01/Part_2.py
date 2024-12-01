@@ -1,6 +1,6 @@
 # AoC 2024
 # Dec01
-# Part 1
+# Part 2
 
 import re
 
@@ -25,8 +25,8 @@ right_list.sort()
 #print(left_list)
 #print(right_list)
 
-total_distance = 0
+similarity_score = 0
 for idx in range(len(left_list)):
-    total_distance += abs(left_list[idx] - right_list[idx])
+    similarity_score += left_list[idx] * right_list.count(left_list[idx])
 
-print("Solution: " + str(total_distance))
+print("Solution: " + str(similarity_score))
