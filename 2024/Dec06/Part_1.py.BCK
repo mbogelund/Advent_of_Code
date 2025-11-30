@@ -1,0 +1,88 @@
+# AoC 2024
+# Dec06
+# Part 1
+
+import datetime
+import re
+
+start_time = datetime.datetime.now()
+
+# Import today's data
+data = [l.strip() for l in open("Input/example.txt", "rt")]
+#data = [l.strip() for l in open("Input/input.txt", "rt")]
+print(data)
+print("----------------")
+
+def move_guard(dir_char: str, pos: tuple):
+    new_pos = pos
+    init = True
+    while init or obstacles.get(new_pos, passable_char) == obstacle_char:
+        if init:
+            init = False
+        new_pos = pos
+        if dir_char == "^":
+            new_pos = (pos[0] - 1, pos[1])
+            print(new_pos, pos[0])
+        if dir_char == ">":
+            new_pos = (pos[0], pos[1] + 1)
+        if dir_char == "v":
+            new_pos = (pos[0] + 1, pos[1])
+        if dir_char == "<":
+            new_pos = (pos[0], pos[1] - 1)
+        if obstacles.get(new_pos, passable_char) == obstacle_char:
+            dir_char_index = guard_chars.index(dir_char) + 1
+            print(dir_char_index)
+            if dir_char_index >= len(guard_chars):
+                dir_char_index = 0
+                print(len(guard_chars))
+            dir_char = guard_chars[dir_char_index % len(guard_chars)]
+            print(dir_char, new_pos)
+        else:
+            traversal[new_pos] = 1
+            print("Returning...")
+            return dir_char, new_pos
+
+obstacles = {}
+traversal = {}
+guard_chars = ["^", ">", "v", "<"]
+obstacle_char = "#"
+passable_char = "."
+
+rows = len(data)
+cols = len(data[0])
+
+for row in range(rows):
+    for col in range(cols):
+        print(data[row][col])
+        if data[row][col] == obstacle_char:
+            obstacles[(row, col)] = data[row][col]
+        if data[row][col] in guard_chars:
+            guard_direction = data[row][col]
+            guard_position = (row, col)
+
+print(obstacles)
+
+while guard_position[0] >= 0 and guard_position[0] < rows and guard_position[1] >= 0 and guard_position[1] < cols:
+    traversal[guard_position] = 1
+    guard_direction, guard_position = move_guard(guard_direction, guard_position)
+    print("In while loop", guard_direction, guard_position)
+
+print(traversal)
+
+
+################
+#..............#
+################
+
+solution = "Pending..."
+print("#--------------------#")
+print("Solution: ", solution)
+print("#--------------------#")
+print()
+
+# Timer
+print("############# TIMER ##############")
+end_time = datetime.datetime.now()
+print("Start time: ", start_time)
+print("End time: ", end_time)
+print("Time used: ", end_time-start_time)
