@@ -1,6 +1,6 @@
 # AoC 2025
 # Dec 3
-# Part 1
+# Part 2
 import datetime
 import re
 import os
