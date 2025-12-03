@@ -12,8 +12,8 @@ basename = os.path.basename(__file__)
 dirname = os.path.dirname(__file__)
 print(dirname)
 print(basename)
-#data = [l.strip() for l in open("Input/example.txt", "rt")]
-data = [l.strip() for l in open(dirname + "/Input/input.txt", "rt")]
+data = [l.strip() for l in open(dirname + "/Input/example.txt", "rt")]
+#data = [l.strip() for l in open(dirname + "/Input/input.txt", "rt")]
 print(data)
 print("----------------")
 
