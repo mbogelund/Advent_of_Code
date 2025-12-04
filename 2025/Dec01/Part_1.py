@@ -12,19 +12,34 @@ basename = os.path.basename(__file__)
 dirname = os.path.dirname(__file__)
 print(dirname)
 print(basename)
-data = [l.strip() for l in open(dirname + "/Input/example.txt", "rt")]
-#data = [l.strip() for l in open(dirname + "/Input/input.txt", "rt")]
+#data = [l.strip() for l in open(dirname + "/Input/example.txt", "rt")]
+data = [l.strip() for l in open(dirname + "/Input/input.txt", "rt")]
 print(data)
 print("----------------")
 
+def rot_to_int(rot: str):
+    sign = 0
+    if rot[0] == "L":
+        sign = -1
+    if rot[0]  == "R":
+        sign = 1
+    return sign * int(rot[1:])
 
-solution = None # Assign value of solution
+
+position = 50
+zero_count = 0
+for rotation in data:
+    position += rot_to_int(rotation)
+    if position % 100 == 0:
+        zero_count += 1
+
+solution = zero_count # Assign value of solution
 
 ################
 #..............#
 ################
 
-solution = "Pending..."
+#solution = "Pending..."
 print("#--------------------#")
 print("Solution: ", solution)
 print("#--------------------#")
